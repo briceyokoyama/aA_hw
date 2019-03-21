@@ -8,26 +8,23 @@ def sluggish(arr)
             end
         end
         return ele1 if longest
-        longest = true
     end
-
-
 end
 
-def dominant(arr)
+def merge_sort(arr)
     return arr if arr.length == 1
     
 
     mid_idx = arr.length/2
 
-    left = dominant(arr[0...mid_idx])
-    right = dominant(arr[mid_idx..-1])
+    left = merge_sort(arr[0...mid_idx])
+    right = merge_sort(arr[mid_idx..-1])
 
-    dominant_merge(left, right)
+    merge(left, right)
 
 end
 
-def dominant_merge(left, right)
+def merge(left, right)
     prc = Proc.new {|a,b| a.length <=> b.length}
 
     merged = []
@@ -43,11 +40,17 @@ def dominant_merge(left, right)
 
 end
 
+def dominant(arr)
+    sorted = merge_sort(arr)
+
+    sorted[-1]
+end
+
 def clever(arr)
     longest_fish = nil
 
     arr.each do |ele|
-        if longest_fish == nil || ele.lenght > longest_fish.lenght
+        if longest_fish == nil || ele.length > longest_fish.length
             longest_fish = ele
         end
     end
@@ -56,9 +59,22 @@ def clever(arr)
 
 end
 
+tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
+
 def slow_dance(dir, tiles_array)
     tiles_array.index(dir)
 end
+
+tiles_hash = {
+    "up" => 0,
+    "right-up" => 1,
+    "right" => 2,
+    "right-down" => 3,
+    "down" => 4,
+    "left-down" => 5,
+    "left" => 6,
+    "left-up" => 7
+}
 
 def fast_dance(dir, tiles_hash)
     tiles_hash[dir]
