@@ -88,3 +88,7 @@ function paradeHelper(elephant) {
     console.log(`${elephant.name} is trotting by!`);
 }
 //herd.forEach(paradeHelper);  // use this to initiate the parade!
+
+function dinerBreakfast() {
+    order = ['cheesy scrambled eggs']
+}
