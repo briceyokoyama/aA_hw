@@ -6,10 +6,14 @@ class giphysSearch extends React.Component {
     super(props)
 
     this.state = {
-      search: ""
+      search: "nothing"
     }
     this.updateSearch = this.updateSearch.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchSearchGiphys('nothing');
   }
 
   updateSearch(e) {
@@ -20,7 +24,7 @@ class giphysSearch extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.fetchSearchGiphys(this.state.search);
+    this.props.fetchSearchGiphys(this.state.search.split(' ').join('+'));
     this.setState({search: ""});
   }
 
